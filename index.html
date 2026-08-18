@@ -24,7 +24,11 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
       background:var(--black);
@@ -33,12 +37,18 @@
       overflow-x:hidden;
     }
 
-    button,a{font:inherit}
-    a{text-decoration:none}
+    button,a,input,textarea{
+      font:inherit;
+    }
+
+    a{
+      text-decoration:none;
+    }
 
     /* =========================
        OPENING
     ========================== */
+
     #opening{
       position:fixed;
       inset:0;
@@ -57,9 +67,9 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(ellipse at 0% 50%, rgba(221,184,103,.28), transparent 34%),
-        radial-gradient(ellipse at 100% 50%, rgba(221,184,103,.28), transparent 34%),
-        radial-gradient(circle at 50% 50%, rgba(255,235,195,.06), transparent 55%);
+        radial-gradient(ellipse at 0% 50%,rgba(221,184,103,.28),transparent 34%),
+        radial-gradient(ellipse at 100% 50%,rgba(221,184,103,.28),transparent 34%),
+        radial-gradient(circle at 50% 50%,rgba(255,235,195,.06),transparent 55%);
       animation:edgeGlow 3s ease-in-out infinite alternate;
       pointer-events:none;
     }
@@ -94,7 +104,10 @@
         brightness(.93)
         drop-shadow(0 0 18px rgba(221,184,103,.25));
       animation:coverBreath 5s ease-in-out infinite;
-      transition:transform 1.45s cubic-bezier(.18,.8,.2,1), filter 1s ease, opacity 1.2s ease;
+      transition:
+        transform 1.45s cubic-bezier(.18,.8,.2,1),
+        filter 1s ease,
+        opacity 1.2s ease;
     }
 
     .cover-hint{
@@ -111,15 +124,20 @@
       opacity:.88;
       animation:hintPulse 2.2s ease-in-out infinite;
       pointer-events:none;
+      white-space:nowrap;
     }
 
     #opening.opening .cover-image{
       transform:scale(1.08) rotateX(7deg);
-      filter:brightness(1.18) drop-shadow(0 0 70px rgba(243,217,154,.85));
+      filter:
+        brightness(1.18)
+        drop-shadow(0 0 70px rgba(243,217,154,.85));
       opacity:0;
     }
 
-    #opening.opening .cover-hint{opacity:0}
+    #opening.opening .cover-hint{
+      opacity:0;
+    }
 
     #opening.opening{
       opacity:0;
@@ -131,10 +149,12 @@
       from{opacity:.55}
       to{opacity:1}
     }
+
     @keyframes coverBreath{
       0%,100%{transform:scale(1)}
       50%{transform:scale(1.008)}
     }
+
     @keyframes hintPulse{
       0%,100%{opacity:.55}
       50%{opacity:1}
@@ -143,6 +163,7 @@
     /* =========================
        PAGE
     ========================== */
+
     #main{
       display:none;
       position:relative;
@@ -159,19 +180,33 @@
       inset:0;
       pointer-events:none;
       background:
-        radial-gradient(circle at 12% 20%, rgba(232,220,199,.035), transparent 24%),
-        radial-gradient(circle at 88% 75%, rgba(201,163,91,.035), transparent 25%);
+        radial-gradient(circle at 12% 20%,rgba(232,220,199,.035),transparent 24%),
+        radial-gradient(circle at 88% 75%,rgba(201,163,91,.035),transparent 25%);
       z-index:0;
     }
+
+    /* =========================
+       SECTIONS - REDUCED SPACE
+    ========================== */
 
     .section{
       position:relative;
       z-index:1;
-      min-height:100vh;
-      padding:90px 18px;
+      min-height:auto;
+      padding:52px 18px;
       display:flex;
       align-items:center;
       justify-content:center;
+    }
+
+    .section:first-child{
+      padding-top:65px;
+      padding-bottom:45px;
+    }
+
+    .section:last-of-type{
+      padding-top:48px;
+      padding-bottom:48px;
     }
 
     .glass{
@@ -196,14 +231,14 @@
       color:var(--gold-light);
       font-size:24px;
       letter-spacing:12px;
-      margin-bottom:20px;
+      margin-bottom:18px;
     }
 
     .bismillah{
       font-family:"Amiri",serif;
       font-size:clamp(2rem,5vw,3.4rem);
       color:var(--beige-light);
-      margin:0 0 22px;
+      margin:0 0 20px;
     }
 
     .quran{
@@ -211,7 +246,7 @@
       font-size:clamp(1.55rem,4vw,2.35rem);
       line-height:2.1;
       color:#fff9ed;
-      margin:0 auto 25px;
+      margin:0 auto 22px;
       max-width:800px;
       text-shadow:0 2px 18px rgba(0,0,0,.35);
     }
@@ -221,7 +256,7 @@
       font-size:clamp(1rem,2.4vw,1.25rem);
       line-height:2.2;
       max-width:720px;
-      margin:0 auto 25px;
+      margin:0 auto 20px;
     }
 
     .names{
@@ -229,13 +264,17 @@
       color:var(--beige-light);
       font-size:clamp(3.1rem,9vw,6rem);
       line-height:1.25;
-      margin:20px 0;
+      margin:15px 0;
       text-shadow:
         0 3px 22px rgba(0,0,0,.45),
         0 0 18px rgba(201,163,91,.13);
     }
 
-    .amp{color:var(--gold-light); font-size:.7em; margin:0 .18em}
+    .amp{
+      color:var(--gold-light);
+      font-size:.7em;
+      margin:0 .18em;
+    }
 
     .message{
       color:#f2e8d9;
@@ -246,10 +285,99 @@
     }
 
     /* =========================
-       DATE / COUNTDOWN
+       DECORATIONS
     ========================== */
+
+    .floating-decoration{
+      position:fixed;
+      z-index:2;
+      pointer-events:none;
+      user-select:none;
+      filter:drop-shadow(0 4px 12px rgba(0,0,0,.3));
+    }
+
+    .butterfly{
+      font-size:28px;
+      animation:
+        butterflyFloat 9s ease-in-out infinite,
+        butterflyMove 15s linear infinite;
+      opacity:.72;
+    }
+
+    .ring{
+      font-size:32px;
+      animation:ringFloat 5s ease-in-out infinite;
+      opacity:.65;
+    }
+
+    .dove{
+      font-size:34px;
+      animation:doveFly 18s linear infinite;
+      opacity:.70;
+    }
+
+    .sparkle{
+      font-size:20px;
+      animation:sparkleTwinkle 3s ease-in-out infinite;
+      opacity:.65;
+    }
+
+    .deco-1{left:8%;top:28%;animation-delay:0s}
+    .deco-2{right:8%;top:46%;animation-delay:2s}
+    .deco-3{left:13%;top:67%;animation-delay:4s}
+    .deco-4{right:12%;top:82%;animation-delay:1s}
+    .deco-5{left:4%;top:55%;animation-delay:2s}
+
+    .deco-6{right:6%;top:20%;animation-delay:1s}
+    .deco-7{left:7%;top:76%;animation-delay:3s}
+
+    .deco-8{left:-70px;top:35%}
+    .deco-9{left:-130px;top:72%;animation-delay:7s}
+
+    .deco-10{right:22%;top:38%;animation-delay:1s}
+    .deco-11{left:23%;top:60%;animation-delay:2s}
+
+    @keyframes butterflyFloat{
+      0%,100%{transform:translateY(0) rotate(-5deg)}
+      50%{transform:translateY(-25px) rotate(8deg)}
+    }
+
+    @keyframes butterflyMove{
+      0%{margin-left:0}
+      50%{margin-left:30px}
+      100%{margin-left:0}
+    }
+
+    @keyframes ringFloat{
+      0%,100%{transform:translateY(0) rotate(-8deg)}
+      50%{transform:translateY(-15px) rotate(8deg)}
+    }
+
+    @keyframes doveFly{
+      0%{
+        transform:translateX(0) translateY(0) scale(.9);
+        opacity:0;
+      }
+      10%{opacity:.7}
+      45%{transform:translateX(50vw) translateY(-35px) scale(1)}
+      85%{opacity:.7}
+      100%{
+        transform:translateX(115vw) translateY(-10px) scale(.9);
+        opacity:0;
+      }
+    }
+
+    @keyframes sparkleTwinkle{
+      0%,100%{transform:scale(.7);opacity:.25}
+      50%{transform:scale(1.35);opacity:1}
+    }
+
+    /* =========================
+       DATE
+    ========================== */
+
     .date-section{
-      background:linear-gradient(rgba(6,5,4,.28),rgba(6,5,4,.48));
+      background:linear-gradient(rgba(6,5,4,.22),rgba(6,5,4,.40));
     }
 
     .calendar-image{
@@ -257,7 +385,7 @@
       width:min(340px,80vw);
       max-height:430px;
       object-fit:contain;
-      margin:0 auto 28px;
+      margin:0 auto 25px;
       border-radius:24px;
       box-shadow:0 20px 55px rgba(0,0,0,.35);
       border:1px solid rgba(245,224,184,.22);
@@ -267,14 +395,14 @@
       font-family:"Amiri",serif;
       font-size:clamp(2rem,5vw,3.4rem);
       color:var(--beige-light);
-      margin:0 0 10px;
+      margin:0 0 8px;
     }
 
     .date-text{
       color:var(--beige);
       font-size:1.2rem;
       font-weight:700;
-      margin:0 0 30px;
+      margin:0 0 25px;
     }
 
     .countdown{
@@ -312,17 +440,18 @@
     /* =========================
        LOCATION
     ========================== */
+
     .section-title{
       font-family:"Amiri",serif;
       color:var(--beige-light);
       font-size:clamp(2.2rem,5vw,3.7rem);
-      margin:0 0 12px;
+      margin:0 0 10px;
     }
 
     .section-subtitle{
       color:var(--gold-light);
       font-weight:700;
-      margin-bottom:25px;
+      margin-bottom:22px;
     }
 
     .venue-image{
@@ -331,7 +460,7 @@
       object-fit:cover;
       border-radius:24px;
       display:block;
-      margin:0 auto 28px;
+      margin:0 auto 25px;
       border:1px solid rgba(245,224,184,.22);
       box-shadow:0 20px 55px rgba(0,0,0,.35);
     }
@@ -340,12 +469,12 @@
       font-family:"Amiri",serif;
       color:#fffaf2;
       font-size:clamp(2rem,5vw,3.1rem);
-      margin:0 0 8px;
+      margin:0 0 6px;
     }
 
     .venue-city{
       color:var(--beige);
-      margin-bottom:25px;
+      margin-bottom:22px;
     }
 
     .map{
@@ -355,7 +484,7 @@
       border-radius:22px;
       display:block;
       box-shadow:0 18px 45px rgba(0,0,0,.3);
-      margin-bottom:24px;
+      margin-bottom:22px;
     }
 
     .map-button{
@@ -370,7 +499,7 @@
       background:linear-gradient(135deg,#f2dfb0,#c9a35b);
       font-weight:800;
       box-shadow:0 12px 30px rgba(0,0,0,.25);
-      transition:transform .25s ease, box-shadow .25s ease;
+      transition:transform .25s ease,box-shadow .25s ease;
     }
 
     .map-button:hover{
@@ -381,12 +510,13 @@
     /* =========================
        NO PHOTO
     ========================== */
+
     .no-photo-icon{
       width:105px;
       height:105px;
       border:2px solid rgba(230,199,139,.65);
       border-radius:50%;
-      margin:0 auto 22px;
+      margin:0 auto 20px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -400,7 +530,7 @@
       font-family:"Amiri",serif;
       font-size:clamp(2rem,5vw,3rem);
       color:var(--beige-light);
-      margin:0 0 18px;
+      margin:0 0 15px;
     }
 
     .no-photo-text{
@@ -412,20 +542,97 @@
     }
 
     /* =========================
+       WISHES
+    ========================== */
+
+    .wishes-box{
+      margin-top:5px;
+    }
+
+    .wishes-title{
+      font-family:"Amiri",serif;
+      color:var(--beige-light);
+      font-size:clamp(2.2rem,5vw,3.5rem);
+      margin:0 0 8px;
+    }
+
+    .wishes-subtitle{
+      color:var(--beige);
+      line-height:2;
+      margin:0 auto 25px;
+      max-width:650px;
+    }
+
+    .wish-input,
+    .wish-textarea{
+      width:100%;
+      border:1px solid rgba(245,224,184,.25);
+      background:rgba(255,248,236,.08);
+      color:#fffaf2;
+      border-radius:18px;
+      padding:15px 18px;
+      outline:none;
+      transition:border-color .25s ease,background .25s ease;
+    }
+
+    .wish-input::placeholder,
+    .wish-textarea::placeholder{
+      color:rgba(245,238,227,.65);
+    }
+
+    .wish-input:focus,
+    .wish-textarea:focus{
+      border-color:rgba(243,217,154,.7);
+      background:rgba(255,248,236,.12);
+    }
+
+    .wish-textarea{
+      min-height:145px;
+      resize:vertical;
+      margin-top:12px;
+    }
+
+    .wish-submit{
+      width:100%;
+      margin-top:14px;
+      padding:15px 22px;
+      border:0;
+      border-radius:999px;
+      background:linear-gradient(135deg,#f2dfb0,#c9a35b);
+      color:#17130d;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      transition:transform .25s ease;
+    }
+
+    .wish-submit:hover{
+      transform:translateY(-2px);
+    }
+
+    #wishStatus{
+      min-height:30px;
+      margin-top:15px;
+      color:var(--gold-light);
+      font-weight:700;
+    }
+
+    /* =========================
        FINAL
     ========================== */
+
     .final-message{
       font-family:"Amiri",serif;
       font-size:clamp(2rem,5vw,3.4rem);
       color:var(--beige-light);
-      margin:0 0 18px;
+      margin:0 0 15px;
     }
 
     .final-sub{
       color:var(--beige);
       font-size:1.08rem;
       line-height:2;
-      margin-bottom:28px;
+      margin-bottom:25px;
     }
 
     .signature{
@@ -438,7 +645,7 @@
       position:relative;
       z-index:1;
       text-align:center;
-      padding:35px 20px 45px;
+      padding:30px 20px 100px;
       background:rgba(7,6,5,.75);
       border-top:1px solid rgba(245,224,184,.14);
       color:#cfc1ad;
@@ -453,6 +660,7 @@
     /* =========================
        MUSIC
     ========================== */
+
     #musicBtn{
       position:fixed;
       top:18px;
@@ -476,67 +684,470 @@
     }
 
     @keyframes musicPulse{
-      50%{box-shadow:0 0 0 9px rgba(201,163,91,.08),0 10px 30px rgba(0,0,0,.25)}
+      50%{
+        box-shadow:
+          0 0 0 9px rgba(201,163,91,.08),
+          0 10px 30px rgba(0,0,0,.25)
+      }
+    }
+
+    /* =========================
+       CAMERA BUTTON
+    ========================== */
+
+    #cameraButton{
+      position:fixed;
+      bottom:22px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1500;
+      width:66px;
+      height:66px;
+      border-radius:50%;
+      border:2px solid rgba(243,217,154,.65);
+      background:
+        radial-gradient(circle at 35% 30%,#f7e7bd,#c9a35b 65%,#8e6d32);
+      color:#17130d;
+      cursor:pointer;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      box-shadow:
+        0 10px 35px rgba(0,0,0,.45),
+        0 0 25px rgba(201,163,91,.25);
+      transition:transform .25s ease;
+    }
+
+    #cameraButton:hover{
+      transform:translateX(-50%) scale(1.08);
+    }
+
+    #cameraButton::after{
+      content:"📸";
+    }
+
+    /* =========================
+       CAMERA MODAL
+    ========================== */
+
+    #cameraModal{
+      position:fixed;
+      inset:0;
+      z-index:5000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.88);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      padding:15px;
+    }
+
+    #cameraModal.active{
+      display:flex;
+    }
+
+    .camera-panel{
+      width:min(720px,100%);
+      max-height:96vh;
+      overflow:auto;
+      background:#11100d;
+      border:1px solid rgba(243,217,154,.35);
+      border-radius:28px;
+      padding:16px;
+      box-shadow:0 30px 100px rgba(0,0,0,.7);
+      position:relative;
+    }
+
+    .camera-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .camera-header h2{
+      margin:0;
+      color:var(--beige-light);
+      font-family:"Amiri",serif;
+      font-size:1.8rem;
+    }
+
+    .camera-close{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid rgba(245,224,184,.25);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      cursor:pointer;
+      font-size:20px;
+    }
+
+    .camera-stage{
+      position:relative;
+      width:100%;
+      aspect-ratio:3/4;
+      background:#050505;
+      border-radius:22px;
+      overflow:hidden;
+    }
+
+    #cameraVideo{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      transform:scaleX(-1);
+    }
+
+    .camera-filter{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      align-items:center;
+      padding:28px 15px;
+      background:
+        linear-gradient(
+          to top,
+          rgba(10,8,5,.62),
+          transparent 38%
+        );
+    }
+
+    .filter-ornament{
+      color:#f3d99a;
+      font-size:23px;
+      letter-spacing:8px;
+      margin-bottom:5px;
+      text-shadow:0 2px 10px #000;
+    }
+
+    .filter-names{
+      font-family:"Amiri",serif;
+      font-size:clamp(2rem,8vw,3.4rem);
+      color:#fffaf2;
+      text-shadow:
+        0 2px 10px #000,
+        0 0 15px rgba(243,217,154,.35);
+      line-height:1.1;
+    }
+
+    .filter-date{
+      color:#f3d99a;
+      font-weight:700;
+      margin-top:5px;
+      text-shadow:0 2px 8px #000;
+    }
+
+    .filter-congrats{
+      font-family:"Amiri",serif;
+      color:#fffaf2;
+      font-size:1.6rem;
+      margin-top:2px;
+      text-shadow:0 2px 8px #000;
+    }
+
+    .filter-corner{
+      position:absolute;
+      color:#f3d99a;
+      font-size:26px;
+      opacity:.85;
+    }
+
+    .filter-corner.one{
+      top:18px;
+      right:18px;
+    }
+
+    .filter-corner.two{
+      top:18px;
+      left:18px;
+    }
+
+    .filter-corner.three{
+      bottom:18px;
+      right:18px;
+    }
+
+    .filter-corner.four{
+      bottom:18px;
+      left:18px;
+    }
+
+    .camera-controls{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:14px;
+      margin-top:15px;
+      flex-wrap:wrap;
+    }
+
+    .capture-button{
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      border:5px solid #fffaf2;
+      background:#d5b66f;
+      box-shadow:0 5px 25px rgba(0,0,0,.5);
+      cursor:pointer;
+    }
+
+    .switch-camera,
+    .camera-secondary{
+      border:1px solid rgba(245,224,184,.28);
+      background:rgba(255,248,236,.08);
+      color:var(--beige-light);
+      border-radius:999px;
+      padding:11px 17px;
+      cursor:pointer;
+    }
+
+    #cameraStatus{
+      text-align:center;
+      min-height:25px;
+      color:var(--gold-light);
+      margin-top:10px;
+      font-size:.9rem;
+    }
+
+    /* =========================
+       PHOTO PREVIEW
+    ========================== */
+
+    #photoPreview{
+      display:none;
+    }
+
+    #photoPreview.active{
+      display:block;
+    }
+
+    #previewCanvas{
+      width:100%;
+      display:block;
+      border-radius:22px;
+      background:#050505;
+    }
+
+    .preview-actions{
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .preview-actions button{
+      flex:1;
+      padding:14px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    #retakeButton{
+      border:1px solid rgba(245,224,184,.3);
+      background:rgba(255,255,255,.08);
+      color:#fffaf2;
+    }
+
+    #sendPhotoButton{
+      border:0;
+      background:linear-gradient(135deg,#f2dfb0,#c9a35b);
+      color:#17130d;
+    }
+
+    #photoGuestName{
+      width:100%;
+      margin-top:12px;
+      padding:14px 17px;
+      border-radius:15px;
+      border:1px solid rgba(245,224,184,.25);
+      background:rgba(255,255,255,.07);
+      color:#fff;
+      outline:none;
+      text-align:right;
     }
 
     /* =========================
        REVEAL
     ========================== */
+
     .reveal{
       opacity:0;
-      transform:translateY(28px);
-      transition:opacity .9s ease, transform .9s ease;
+      transform:translateY(25px);
+      transition:opacity .8s ease,transform .8s ease;
     }
+
     .reveal.visible{
       opacity:1;
       transform:none;
     }
 
+    /* =========================
+       MOBILE
+    ========================== */
+
     @media(max-width:650px){
-      .section{padding:70px 13px}
-      .glass{border-radius:25px;padding:28px 18px}
-      .countdown{grid-template-columns:repeat(2,1fr)}
-      .map{height:290px}
-      .cover-hint{font-size:.78rem}
+
+      .section{
+        padding:38px 12px;
+      }
+
+      .section:first-child{
+        padding-top:45px;
+        padding-bottom:35px;
+      }
+
+      .glass{
+        border-radius:25px;
+        padding:26px 17px;
+      }
+
+      .countdown{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .map{
+        height:290px;
+      }
+
+      .cover-hint{
+        font-size:.78rem;
+      }
+
+      .floating-decoration{
+        transform:scale(.78);
+      }
+
+      .camera-panel{
+        padding:10px;
+        border-radius:22px;
+      }
+
+      .camera-stage{
+        aspect-ratio:3/4;
+      }
+
+      .camera-controls{
+        gap:9px;
+      }
+
+      #cameraButton{
+        bottom:16px;
+        width:60px;
+        height:60px;
+      }
+
+      footer{
+        padding-bottom:90px;
+      }
     }
 
     @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{
+
+      *,
+      *::before,
+      *::after{
         animation-duration:.01ms!important;
         animation-iteration-count:1!important;
         scroll-behavior:auto!important;
         transition-duration:.01ms!important;
       }
+
     }
   </style>
 </head>
 
 <body>
 
-  <!-- MUSIC -->
+  <!-- =========================
+       MUSIC
+  ========================== -->
+
   <audio id="music" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- OPENING -->
+
+  <!-- =========================
+       OPENING
+  ========================== -->
+
   <div id="opening" aria-label="فتح الدعوة">
+
     <div class="cover-wrap">
-      <img src="cover.jpg" class="cover-image" alt="الرسالة الافتتاحية">
-      <div class="cover-hint">اضغط في أي مكان لفتح الدعوة</div>
+
+      <img
+        src="cover.jpg"
+        class="cover-image"
+        alt="الرسالة الافتتاحية"
+      >
+
+      <div class="cover-hint">
+        اضغط في أي مكان لفتح الدعوة
+      </div>
+
     </div>
+
   </div>
 
-  <button id="musicBtn" type="button" aria-label="تشغيل الموسيقى">♫</button>
+
+  <!-- =========================
+       DECORATIONS
+  ========================== -->
+
+  <div class="floating-decoration butterfly deco-1">🦋</div>
+  <div class="floating-decoration butterfly deco-2">🦋</div>
+  <div class="floating-decoration butterfly deco-3">🦋</div>
+  <div class="floating-decoration butterfly deco-4">🦋</div>
+
+  <div class="floating-decoration ring deco-6">💍</div>
+  <div class="floating-decoration ring deco-7">💍</div>
+
+  <div class="floating-decoration dove deco-8">🕊️</div>
+  <div class="floating-decoration dove deco-9">🕊️</div>
+
+  <div class="floating-decoration sparkle deco-5">✦</div>
+  <div class="floating-decoration sparkle deco-10">✧</div>
+  <div class="floating-decoration sparkle deco-11">✦</div>
+
+
+  <!-- MUSIC BUTTON -->
+
+  <button
+    id="musicBtn"
+    type="button"
+    aria-label="تشغيل الموسيقى">
+    ♫
+  </button>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
 
   <main id="main">
 
+
     <!-- INTRO -->
+
     <section class="section">
+
       <div class="glass reveal">
 
-        <div class="ornament">✦ ✦ ✦</div>
+        <div class="ornament">
+          ✦ ✦ ✦
+        </div>
 
-        <h1 class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</h1>
+        <h1 class="bismillah">
+          بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
+        </h1>
 
         <p class="quran">
           ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
@@ -559,44 +1170,97 @@
         </p>
 
       </div>
+
     </section>
 
+
     <!-- DATE -->
+
     <section class="section date-section">
+
       <div class="glass reveal">
 
-        <div class="ornament">✧</div>
+        <div class="ornament">
+          ✧
+        </div>
 
-        <img src="calendar.jpg" class="calendar-image" alt="تقويم 12 ديسمبر 2026">
+        <img
+          src="calendar.jpg"
+          class="calendar-image"
+          alt="تقويم 12 ديسمبر 2026"
+        >
 
-        <h2 class="date-title">موعد فرحتنا</h2>
-        <p class="date-text">السبت 12 ديسمبر 2026 — من الساعة 11:00 صباحًا إلى 17:00</p>
+        <h2 class="date-title">
+          موعد فرحتنا
+        </h2>
 
-        <div class="countdown" id="countdown">
-          <div class="counter"><strong id="days">00</strong><span>يوم</span></div>
-          <div class="counter"><strong id="hours">00</strong><span>ساعة</span></div>
-          <div class="counter"><strong id="minutes">00</strong><span>دقيقة</span></div>
-          <div class="counter"><strong id="seconds">00</strong><span>ثانية</span></div>
+        <p class="date-text">
+          السبت 12 ديسمبر 2026 — من الساعة 11:00 صباحًا إلى 17:00
+        </p>
+
+        <div
+          class="countdown"
+          id="countdown">
+
+          <div class="counter">
+            <strong id="days">00</strong>
+            <span>يوم</span>
+          </div>
+
+          <div class="counter">
+            <strong id="hours">00</strong>
+            <span>ساعة</span>
+          </div>
+
+          <div class="counter">
+            <strong id="minutes">00</strong>
+            <span>دقيقة</span>
+          </div>
+
+          <div class="counter">
+            <strong id="seconds">00</strong>
+            <span>ثانية</span>
+          </div>
+
         </div>
 
       </div>
+
     </section>
 
+
     <!-- LOCATION -->
+
     <section class="section">
+
       <div class="glass reveal">
 
-        <div class="ornament">✦</div>
+        <div class="ornament">
+          ✦
+        </div>
 
-        <h2 class="section-title">مكان اللقاء</h2>
-        <div class="section-subtitle">نسعد بوجودكم معنا</div>
+        <h2 class="section-title">
+          مكان اللقاء
+        </h2>
 
-        <img src="venue.jpg" class="venue-image" alt="قاعة باب الحارة">
+        <div class="section-subtitle">
+          نسعد بوجودكم معنا
+        </div>
 
-        <h3 class="venue-name">قاعة باب الحارة</h3>
-        <p class="venue-city">برج بوعريريج</p>
+        <img
+          src="venue.jpg"
+          class="venue-image"
+          alt="قاعة باب الحارة"
+        >
 
-        <!-- Google Maps preview by place name -->
+        <h3 class="venue-name">
+          قاعة باب الحارة
+        </h3>
+
+        <p class="venue-city">
+          برج بوعريريج
+        </p>
+
         <iframe
           class="map"
           src="https://www.google.com/maps?q=قاعة+باب+الحارة,+برج+بوعريريج&output=embed"
@@ -614,15 +1278,23 @@
         </a>
 
       </div>
+
     </section>
 
+
     <!-- NO PHOTO -->
+
     <section class="section">
+
       <div class="glass reveal">
 
-        <div class="no-photo-icon">⌾</div>
+        <div class="no-photo-icon">
+          ⌾
+        </div>
 
-        <h2 class="no-photo-title">نرجو منكم لطفًا تجنّب التصوير</h2>
+        <h2 class="no-photo-title">
+          نرجو منكم لطفًا تجنّب التصوير
+        </h2>
 
         <p class="no-photo-text">
           حرصًا على خصوصية هذه اللحظات الجميلة، نرجو منكم بكل لطف
@@ -631,124 +1303,1382 @@
         </p>
 
       </div>
+
     </section>
 
-    <!-- FINAL -->
+
+    <!-- WISHES -->
+
     <section class="section">
+
+      <div class="glass reveal wishes-box">
+
+        <div class="ornament">
+          ♡ ✦ ♡
+        </div>
+
+        <h2 class="wishes-title">
+          اتركوا لنا تهنئتكم
+        </h2>
+
+        <p class="wishes-subtitle">
+          كلماتكم الجميلة ستبقى ذكرى نحتفظ بها بكل حب 🤍
+        </p>
+
+        <input
+          id="wishName"
+          class="wish-input"
+          type="text"
+          placeholder="اسمك"
+          maxlength="80"
+        >
+
+        <textarea
+          id="wishMessage"
+          class="wish-textarea"
+          placeholder="اكتب تهنئتك هنا..."
+          maxlength="500">
+        </textarea>
+
+        <button
+          id="wishSubmit"
+          class="wish-submit"
+          type="button">
+          إرسال التهنئة 🤍
+        </button>
+
+        <div id="wishStatus"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+
+    <section class="section">
+
       <div class="glass reveal">
 
-        <div class="ornament">♡</div>
+        <div class="ornament">
+          ♡
+        </div>
 
-        <h2 class="final-message">ننتظر حضوركم بكل حب وفرح</h2>
+        <h2 class="final-message">
+          ننتظر حضوركم بكل حب وفرح
+        </h2>
 
         <p class="final-sub">
           ففرحتنا لا تكتمل إلا بوجود من نحب بجانبنا،
           ونتمنى أن تجمعنا هذه المناسبة على أجمل الذكريات.
         </p>
 
-        <div class="signature">زينو وسهام</div>
+        <div class="signature">
+          زينو وسهام
+        </div>
 
       </div>
+
     </section>
 
+
     <footer>
-      <strong>صُنع بكل حب 🤍</strong>
-      <div style="margin-top:8px;font-size:.82rem">زينو وسهام</div>
+
+      <strong>
+        صُنع بكل حب 🤍
+      </strong>
+
+      <div style="margin-top:8px;font-size:.82rem">
+        زينو وسهام
+      </div>
+
     </footer>
 
   </main>
 
+
+  <!-- =========================
+       CAMERA BUTTON
+  ========================== -->
+
+  <button
+    id="cameraButton"
+    type="button"
+    aria-label="فتح الكاميرا">
+  </button>
+
+
+  <!-- =========================
+       CAMERA MODAL
+  ========================== -->
+
+  <div id="cameraModal">
+
+    <div class="camera-panel">
+
+      <div class="camera-header">
+
+        <h2>
+          صورة من فرحتنا 📸
+        </h2>
+
+        <button
+          id="cameraClose"
+          class="camera-close"
+          type="button">
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- CAMERA -->
+
+      <div
+        id="liveCamera"
+        class="camera-stage">
+
+        <video
+          id="cameraVideo"
+          autoplay
+          playsinline>
+        </video>
+
+        <div class="camera-filter">
+
+          <div class="filter-corner one">
+            ✦
+          </div>
+
+          <div class="filter-corner two">
+            ♡
+          </div>
+
+          <div class="filter-corner three">
+            ✧
+          </div>
+
+          <div class="filter-corner four">
+            ♡
+          </div>
+
+          <div class="filter-ornament">
+            ✦ ✦ ✦
+          </div>
+
+          <div class="filter-names">
+            زينو ♡ سهام
+          </div>
+
+          <div class="filter-date">
+            12 ديسمبر 2026
+          </div>
+
+          <div class="filter-congrats">
+            مبروك 🤍
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PREVIEW -->
+
+      <div
+        id="photoPreview">
+
+        <canvas
+          id="previewCanvas">
+        </canvas>
+
+        <input
+          id="photoGuestName"
+          type="text"
+          placeholder="اكتب اسمك لإرسال الصورة"
+          maxlength="80"
+        >
+
+        <div class="preview-actions">
+
+          <button
+            id="retakeButton"
+            type="button">
+            إعادة التصوير
+          </button>
+
+          <button
+            id="sendPhotoButton"
+            type="button">
+            إرسال الصورة 📸
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONTROLS -->
+
+      <div
+        id="cameraControls"
+        class="camera-controls">
+
+        <button
+          id="switchCamera"
+          class="switch-camera"
+          type="button">
+          🔄 تبديل الكاميرا
+        </button>
+
+        <button
+          id="captureButton"
+          class="capture-button"
+          type="button"
+          aria-label="التقاط الصورة">
+        </button>
+
+      </div>
+
+
+      <div id="cameraStatus"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script>
-    const opening = document.getElementById("opening");
-    const main = document.getElementById("main");
-    const music = document.getElementById("music");
-    const musicBtn = document.getElementById("musicBtn");
+
+    /* =========================
+       GOOGLE APPS SCRIPT
+    ========================== */
+
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbyenVjPER5Y4nqjcrk6GPyIfm4I8v9vyElWgfW0TJRE4dzBG-2obsEwyHeM4kujf-I56g/exec";
+
+
+    /* =========================
+       OPENING
+    ========================== */
+
+    const opening =
+      document.getElementById("opening");
+
+    const main =
+      document.getElementById("main");
+
+    const music =
+      document.getElementById("music");
+
+    const musicBtn =
+      document.getElementById("musicBtn");
+
+    const cameraButton =
+      document.getElementById("cameraButton");
+
 
     let musicPlaying = false;
 
+
     function openInvitation(){
+
       opening.classList.add("opening");
 
-      // يبدأ الصوت بعد تفاعل المستخدم، وهو الأسلوب الأكثر توافقًا مع المتصفحات.
       music.volume = 0.28;
-      music.play().then(() => {
-        musicPlaying = true;
-        musicBtn.classList.add("playing");
-        musicBtn.textContent = "◼";
-        musicBtn.setAttribute("aria-label","إيقاف الموسيقى");
-      }).catch(() => {});
+
+      music.play()
+        .then(() => {
+
+          musicPlaying = true;
+
+          musicBtn.classList.add("playing");
+
+          musicBtn.textContent = "◼";
+
+          musicBtn.setAttribute(
+            "aria-label",
+            "إيقاف الموسيقى"
+          );
+
+        })
+        .catch(() => {});
+
 
       setTimeout(() => {
+
         opening.style.display = "none";
+
         main.style.display = "block";
+
         musicBtn.style.display = "block";
+
+        cameraButton.style.display = "flex";
+
         initReveal();
-      }, 1100);
+
+      },1100);
+
     }
 
-    opening.addEventListener("click", openInvitation);
 
-    musicBtn.addEventListener("click", async (event) => {
-      event.stopPropagation();
+    opening.addEventListener(
+      "click",
+      openInvitation
+    );
 
-      if(musicPlaying){
-        music.pause();
-        musicPlaying = false;
-        musicBtn.classList.remove("playing");
-        musicBtn.textContent = "♫";
-        musicBtn.setAttribute("aria-label","تشغيل الموسيقى");
-      }else{
-        try{
-          await music.play();
-          musicPlaying = true;
-          musicBtn.classList.add("playing");
-          musicBtn.textContent = "◼";
-          musicBtn.setAttribute("aria-label","إيقاف الموسيقى");
-        }catch(e){}
+
+    /* =========================
+       MUSIC
+    ========================== */
+
+    musicBtn.addEventListener(
+      "click",
+      async(event) => {
+
+        event.stopPropagation();
+
+        if(musicPlaying){
+
+          music.pause();
+
+          musicPlaying = false;
+
+          musicBtn.classList.remove("playing");
+
+          musicBtn.textContent = "♫";
+
+          musicBtn.setAttribute(
+            "aria-label",
+            "تشغيل الموسيقى"
+          );
+
+        }else{
+
+          try{
+
+            await music.play();
+
+            musicPlaying = true;
+
+            musicBtn.classList.add("playing");
+
+            musicBtn.textContent = "◼";
+
+            musicBtn.setAttribute(
+              "aria-label",
+              "إيقاف الموسيقى"
+            );
+
+          }catch(e){}
+
+        }
+
       }
-    });
+    );
 
-    // Countdown: 12 December 2026, 11:00 local time
-    const eventDate = new Date(2026, 11, 12, 11, 0, 0).getTime();
+
+    /* =========================
+       COUNTDOWN
+    ========================== */
+
+    const eventDate =
+      new Date(
+        2026,
+        11,
+        12,
+        11,
+        0,
+        0
+      ).getTime();
+
 
     function updateCountdown(){
-      const now = Date.now();
-      const distance = eventDate - now;
+
+      const now =
+        Date.now();
+
+      const distance =
+        eventDate - now;
+
 
       if(distance <= 0){
-        document.getElementById("countdown").innerHTML =
+
+        document.getElementById(
+          "countdown"
+        ).innerHTML =
           '<div style="grid-column:1/-1;color:#fffaf2;font-family:Amiri,serif;font-size:2rem">أهلًا بكم، لقد حان موعد فرحتنا ✨</div>';
+
         return;
+
       }
 
-      const days = Math.floor(distance / (1000*60*60*24));
-      const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-      const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-      const seconds = Math.floor((distance % (1000*60)) / 1000);
 
-      document.getElementById("days").textContent = String(days).padStart(2,"0");
-      document.getElementById("hours").textContent = String(hours).padStart(2,"0");
-      document.getElementById("minutes").textContent = String(minutes).padStart(2,"0");
-      document.getElementById("seconds").textContent = String(seconds).padStart(2,"0");
+      const days =
+        Math.floor(
+          distance /
+          (1000*60*60*24)
+        );
+
+      const hours =
+        Math.floor(
+          (distance %
+          (1000*60*60*24)) /
+          (1000*60*60)
+        );
+
+      const minutes =
+        Math.floor(
+          (distance %
+          (1000*60*60)) /
+          (1000*60)
+        );
+
+      const seconds =
+        Math.floor(
+          (distance %
+          (1000*60)) /
+          1000
+        );
+
+
+      document.getElementById("days")
+        .textContent =
+        String(days).padStart(2,"0");
+
+      document.getElementById("hours")
+        .textContent =
+        String(hours).padStart(2,"0");
+
+      document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2,"0");
+
+      document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2,"0");
+
     }
+
 
     updateCountdown();
-    setInterval(updateCountdown,1000);
+
+    setInterval(
+      updateCountdown,
+      1000
+    );
+
+
+    /* =========================
+       REVEAL
+    ========================== */
 
     function initReveal(){
-      const elements = document.querySelectorAll(".reveal");
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
+      const elements =
+        document.querySelectorAll(
+          ".reveal"
+        );
+
+
+      const observer =
+        new IntersectionObserver(
+          (entries) => {
+
+            entries.forEach(
+              entry => {
+
+                if(entry.isIntersecting){
+
+                  entry.target.classList.add(
+                    "visible"
+                  );
+
+                  observer.unobserve(
+                    entry.target
+                  );
+
+                }
+
+              }
+            );
+
+          },
+          {
+            threshold:.12
           }
-        });
-      }, {threshold:0.12});
+        );
 
-      elements.forEach(el => observer.observe(el));
+
+      elements.forEach(
+        el => observer.observe(el)
+      );
+
     }
+
+
+    /* =========================
+       WISHES
+    ========================== */
+
+    const wishSubmit =
+      document.getElementById(
+        "wishSubmit"
+      );
+
+    const wishStatus =
+      document.getElementById(
+        "wishStatus"
+      );
+
+
+    wishSubmit.addEventListener(
+      "click",
+      async() => {
+
+        const name =
+          document
+          .getElementById("wishName")
+          .value
+          .trim();
+
+        const message =
+          document
+          .getElementById("wishMessage")
+          .value
+          .trim();
+
+
+        if(!name){
+
+          wishStatus.textContent =
+            "يرجى كتابة اسمك 🤍";
+
+          return;
+
+        }
+
+
+        if(!message){
+
+          wishStatus.textContent =
+            "اكتب تهنئتك أولًا 🤍";
+
+          return;
+
+        }
+
+
+        wishSubmit.disabled = true;
+
+        wishSubmit.textContent =
+          "جاري الإرسال...";
+
+
+        try{
+
+          const response =
+            await fetch(
+              SCRIPT_URL,
+              {
+                method:"POST",
+
+                headers:{
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+
+                body:JSON.stringify({
+
+                  type:"wish",
+
+                  name:name,
+
+                  message:message
+
+                })
+
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          if(result.success){
+
+            wishStatus.textContent =
+              "تم إرسال تهنئتك بنجاح 🤍";
+
+            document
+              .getElementById("wishName")
+              .value = "";
+
+            document
+              .getElementById("wishMessage")
+              .value = "";
+
+          }else{
+
+            throw new Error(
+              result.error ||
+              "حدث خطأ"
+            );
+
+          }
+
+        }catch(error){
+
+          wishStatus.textContent =
+            "تعذر إرسال التهنئة، حاول مرة أخرى.";
+
+        }
+
+
+        wishSubmit.disabled = false;
+
+        wishSubmit.textContent =
+          "إرسال التهنئة 🤍";
+
+      }
+    );
+
+
+    /* =========================
+       CAMERA
+    ========================== */
+
+    const cameraModal =
+      document.getElementById(
+        "cameraModal"
+      );
+
+    const cameraClose =
+      document.getElementById(
+        "cameraClose"
+      );
+
+    const cameraVideo =
+      document.getElementById(
+        "cameraVideo"
+      );
+
+    const captureButton =
+      document.getElementById(
+        "captureButton"
+      );
+
+    const switchCamera =
+      document.getElementById(
+        "switchCamera"
+      );
+
+    const cameraStatus =
+      document.getElementById(
+        "cameraStatus"
+      );
+
+    const cameraControls =
+      document.getElementById(
+        "cameraControls"
+      );
+
+    const liveCamera =
+      document.getElementById(
+        "liveCamera"
+      );
+
+    const photoPreview =
+      document.getElementById(
+        "photoPreview"
+      );
+
+    const previewCanvas =
+      document.getElementById(
+        "previewCanvas"
+      );
+
+    const retakeButton =
+      document.getElementById(
+        "retakeButton"
+      );
+
+    const sendPhotoButton =
+      document.getElementById(
+        "sendPhotoButton"
+      );
+
+    const photoGuestName =
+      document.getElementById(
+        "photoGuestName"
+      );
+
+
+    let cameraStream = null;
+
+    let facingMode = "user";
+
+    let capturedImage = null;
+
+
+    /* =========================
+       OPEN CAMERA
+    ========================== */
+
+    cameraButton.addEventListener(
+      "click",
+      async() => {
+
+        cameraModal.classList.add(
+          "active"
+        );
+
+        photoPreview.classList.remove(
+          "active"
+        );
+
+        liveCamera.style.display =
+          "block";
+
+        cameraControls.style.display =
+          "flex";
+
+        cameraStatus.textContent =
+          "جاري تشغيل الكاميرا...";
+
+
+        await startCamera();
+
+      }
+    );
+
+
+    async function startCamera(){
+
+      stopCamera();
+
+
+      try{
+
+        cameraStream =
+          await navigator.mediaDevices
+          .getUserMedia({
+
+            video:{
+              facingMode:facingMode,
+
+              width:{
+                ideal:1080
+              },
+
+              height:{
+                ideal:1440
+              }
+
+            },
+
+            audio:false
+
+          });
+
+
+        cameraVideo.srcObject =
+          cameraStream;
+
+
+        cameraStatus.textContent =
+          "الكاميرا جاهزة 📸";
+
+      }catch(error){
+
+        console.error(error);
+
+        cameraStatus.innerHTML =
+          "لم نتمكن من تشغيل الكاميرا.<br>" +
+          "تأكد من السماح باستخدام الكاميرا.";
+
+      }
+
+    }
+
+
+    /* =========================
+       SWITCH CAMERA
+    ========================== */
+
+    switchCamera.addEventListener(
+      "click",
+      async() => {
+
+        facingMode =
+          facingMode === "user"
+          ? "environment"
+          : "user";
+
+        await startCamera();
+
+      }
+    );
+
+
+    /* =========================
+       CAPTURE
+    ========================== */
+
+    captureButton.addEventListener(
+      "click",
+      () => {
+
+        if(!cameraStream){
+
+          cameraStatus.textContent =
+            "الكاميرا غير جاهزة.";
+
+          return;
+
+        }
+
+
+        const videoWidth =
+          cameraVideo.videoWidth;
+
+        const videoHeight =
+          cameraVideo.videoHeight;
+
+
+        if(!videoWidth || !videoHeight){
+
+          cameraStatus.textContent =
+            "انتظر لحظة حتى تجهز الكاميرا.";
+
+          return;
+
+        }
+
+
+        /*
+          نحافظ على نسبة الصورة
+        */
+
+        previewCanvas.width =
+          videoWidth;
+
+        previewCanvas.height =
+          videoHeight;
+
+
+        const ctx =
+          previewCanvas.getContext(
+            "2d"
+          );
+
+
+        /*
+          الصورة الأمامية تكون معكوسة
+          مثل المعاينة.
+        */
+
+        if(facingMode === "user"){
+
+          ctx.translate(
+            videoWidth,
+            0
+          );
+
+          ctx.scale(
+            -1,
+            1
+          );
+
+        }
+
+
+        ctx.drawImage(
+          cameraVideo,
+          0,
+          0,
+          videoWidth,
+          videoHeight
+        );
+
+
+        /*
+          إعادة اتجاه الرسم
+        */
+
+        if(facingMode === "user"){
+
+          ctx.setTransform(
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          );
+
+        }
+
+
+        /*
+          فلتر الصورة
+        */
+
+        drawPhotoFilter(
+          ctx,
+          videoWidth,
+          videoHeight
+        );
+
+
+        capturedImage =
+          previewCanvas.toDataURL(
+            "image/jpeg",
+            .88
+          );
+
+
+        liveCamera.style.display =
+          "none";
+
+        cameraControls.style.display =
+          "none";
+
+        photoPreview.classList.add(
+          "active"
+        );
+
+        cameraStatus.textContent =
+          "تم التقاط الصورة 🤍";
+
+        stopCamera();
+
+      }
+    );
+
+
+    /* =========================
+       FILTER
+    ========================== */
+
+    function drawPhotoFilter(
+      ctx,
+      width,
+      height
+    ){
+
+      /*
+        طبقة داكنة خفيفة في الأسفل
+      */
+
+      const gradient =
+        ctx.createLinearGradient(
+          0,
+          height * .62,
+          0,
+          height
+        );
+
+
+      gradient.addColorStop(
+        0,
+        "rgba(10,8,5,0)"
+      );
+
+      gradient.addColorStop(
+        1,
+        "rgba(10,8,5,.72)"
+      );
+
+
+      ctx.fillStyle =
+        gradient;
+
+      ctx.fillRect(
+        0,
+        height*.58,
+        width,
+        height*.42
+      );
+
+
+      /*
+        النص
+      */
+
+      ctx.textAlign =
+        "center";
+
+      ctx.direction =
+        "rtl";
+
+
+      const centerX =
+        width / 2;
+
+
+      /*
+        زخرفة
+      */
+
+      ctx.font =
+        `${Math.max(25,width*.035)}px Arial`;
+
+      ctx.fillStyle =
+        "#f3d99a";
+
+      ctx.fillText(
+        "✦ ✦ ✦",
+        centerX,
+        height*.78
+      );
+
+
+      /*
+        الأسماء
+      */
+
+      ctx.font =
+        `bold ${Math.max(42,width*.075)}px Amiri, serif`;
+
+      ctx.fillStyle =
+        "#fffaf2";
+
+      ctx.shadowColor =
+        "rgba(0,0,0,.8)";
+
+      ctx.shadowBlur =
+        12;
+
+      ctx.fillText(
+        "زينو ♡ سهام",
+        centerX,
+        height*.86
+      );
+
+
+      /*
+        التاريخ
+      */
+
+      ctx.font =
+        `bold ${Math.max(22,width*.035)}px Cairo, sans-serif`;
+
+      ctx.fillStyle =
+        "#f3d99a";
+
+      ctx.fillText(
+        "12 ديسمبر 2026",
+        centerX,
+        height*.91
+      );
+
+
+      /*
+        مبروك
+      */
+
+      ctx.font =
+        `${Math.max(30,width*.045)}px Amiri, serif`;
+
+      ctx.fillStyle =
+        "#fffaf2";
+
+      ctx.fillText(
+        "مبروك 🤍",
+        centerX,
+        height*.965
+      );
+
+
+      /*
+        زوايا زخرفية
+      */
+
+      ctx.font =
+        `${Math.max(30,width*.045)}px Arial`;
+
+      ctx.fillStyle =
+        "#f3d99a";
+
+      ctx.fillText(
+        "✦",
+        width*.08,
+        height*.10
+      );
+
+      ctx.fillText(
+        "♡",
+        width*.92,
+        height*.10
+      );
+
+      ctx.fillText(
+        "✧",
+        width*.08,
+        height*.92
+      );
+
+      ctx.fillText(
+        "♡",
+        width*.92,
+        height*.92
+      );
+
+
+      ctx.shadowBlur =
+        0;
+
+    }
+
+
+    /* =========================
+       RETAKE
+    ========================== */
+
+    retakeButton.addEventListener(
+      "click",
+      async() => {
+
+        photoPreview.classList.remove(
+          "active"
+        );
+
+        liveCamera.style.display =
+          "block";
+
+        cameraControls.style.display =
+          "flex";
+
+        cameraStatus.textContent =
+          "جاري تشغيل الكاميرا...";
+
+        await startCamera();
+
+      }
+    );
+
+
+    /* =========================
+       SEND PHOTO
+    ========================== */
+
+    sendPhotoButton.addEventListener(
+      "click",
+      async() => {
+
+        const name =
+          photoGuestName
+          .value
+          .trim();
+
+
+        if(!name){
+
+          cameraStatus.textContent =
+            "يرجى كتابة اسمك قبل إرسال الصورة.";
+
+          return;
+
+        }
+
+
+        if(!capturedImage){
+
+          cameraStatus.textContent =
+            "لم يتم التقاط صورة.";
+
+          return;
+
+        }
+
+
+        sendPhotoButton.disabled =
+          true;
+
+        retakeButton.disabled =
+          true;
+
+        sendPhotoButton.textContent =
+          "جاري إرسال الصورة...";
+
+
+        cameraStatus.textContent =
+          "جاري رفع الصورة إلى Google Drive ⏳";
+
+
+        try{
+
+          const response =
+            await fetch(
+              SCRIPT_URL,
+              {
+
+                method:"POST",
+
+                headers:{
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+
+                body:JSON.stringify({
+
+                  type:"photo",
+
+                  name:name,
+
+                  image:capturedImage
+
+                })
+
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          if(result.success){
+
+            cameraStatus.innerHTML =
+              "تم إرسال صورتك بنجاح 🤍📸<br>" +
+              "شكرًا لمشاركتنا فرحتنا.";
+
+
+            sendPhotoButton.textContent =
+              "تم الإرسال ✓";
+
+
+            setTimeout(
+              closeCamera,
+              2200
+            );
+
+          }else{
+
+            throw new Error(
+              result.error ||
+              "حدث خطأ أثناء الإرسال"
+            );
+
+          }
+
+        }catch(error){
+
+          console.error(error);
+
+          cameraStatus.textContent =
+            "تعذر إرسال الصورة. حاول مرة أخرى.";
+
+          sendPhotoButton.disabled =
+            false;
+
+          retakeButton.disabled =
+            false;
+
+          sendPhotoButton.textContent =
+            "إرسال الصورة 📸";
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       CLOSE CAMERA
+    ========================== */
+
+    cameraClose.addEventListener(
+      "click",
+      closeCamera
+    );
+
+
+    cameraModal.addEventListener(
+      "click",
+      event => {
+
+        if(
+          event.target ===
+          cameraModal
+        ){
+
+          closeCamera();
+
+        }
+
+      }
+    );
+
+
+    function closeCamera(){
+
+      stopCamera();
+
+      cameraModal.classList.remove(
+        "active"
+      );
+
+      photoPreview.classList.remove(
+        "active"
+      );
+
+      liveCamera.style.display =
+        "block";
+
+      cameraControls.style.display =
+        "flex";
+
+      cameraStatus.textContent =
+        "";
+
+      capturedImage =
+        null;
+
+      photoGuestName.value =
+        "";
+
+      sendPhotoButton.disabled =
+        false;
+
+      retakeButton.disabled =
+        false;
+
+      sendPhotoButton.textContent =
+        "إرسال الصورة 📸";
+
+    }
+
+
+    function stopCamera(){
+
+      if(cameraStream){
+
+        cameraStream
+          .getTracks()
+          .forEach(
+            track =>
+              track.stop()
+          );
+
+        cameraStream =
+          null;
+
+      }
+
+      cameraVideo.srcObject =
+        null;
+
+    }
+
+
   </script>
 
 </body>
